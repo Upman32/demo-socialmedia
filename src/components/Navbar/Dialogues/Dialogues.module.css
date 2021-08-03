@@ -1,0 +1,40 @@
+.Dialogues {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialoguesitems{
+    padding: 10px;
+    color: black;
+}
+.dialoguesitems .active {
+    color:rgb(58, 51, 35)
+}
+
+.dialogues_link {
+    color: black;
+    text-decoration: none;
+    padding-left: 5px;
+}
+
+.dialogues_link:hover {
+    color: #225555;
+    text-decoration: underline;
+}
+
+.Dialogue{
+    padding:10px;
+    color:blue; 
+}
+.messages {
+
+}
+.messages .message{
+
+}
+.Dialogue img {
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+  }
+
