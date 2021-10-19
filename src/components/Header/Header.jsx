@@ -3,7 +3,7 @@ import c from './Header.module.css'
 
 const Header = (props) => {
     return <header className={c.header}>
-        <img src='https://thicc.mywaifulist.moe/waifus/357/970e775e3ad5b3f5873550891e69252465dcde5b246bb474f2503bb3ece602b0_thumb.jpeg' />
+        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Flag_of_Gondor.svg/1280px-Flag_of_Gondor.svg.png' />
         <div className={c.loginBlock}>
             {props.isAuth ? <div>{props.login} - <button onClick={props.logout}>Log out</button></div>
              : <NavLink to={'/login'}>Login</NavLink>}

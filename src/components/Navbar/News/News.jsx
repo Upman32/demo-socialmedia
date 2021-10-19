@@ -3,11 +3,11 @@ import c from './News.module.css'
 
 
 const News = (props) => {
- return (
-     <div ClassName >
-         News
-     </div>
- )
+    return (
+        <div ClassName >
+            News
+        </div>
+    )
 
 
 

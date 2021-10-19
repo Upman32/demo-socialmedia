@@ -9,9 +9,9 @@ let initialState = {
  
         messages: [
             { id: 1, message: 'LOL' },
-            { id: 2, message: 'keku' },
-            { id: 3, message: 'Coco Kaine' },
-            { id: 4, message: 'SebastiAAAAAN' },
+            { id: 2, message: 'Sendor flyed awayed' },
+            { id: 3, message: 'Nice vibrations!' },
+            { id: 4, message: 'SebastiAN' },
             { id: 5, message: 'HOW MANY SHRIMPS FLAMING CAN eat' },
             { id: 6, message: 'one thousand million dolars' }
 

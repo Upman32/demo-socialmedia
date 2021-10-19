@@ -3,14 +3,14 @@ import reportWebVitals from './reportWebVitals';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MainContainerApp from './App'
-import Game from './components/TicTacToe/TicTacToe';
 
 
 
- 
+
+
 ReactDOM.render(
 
-    <MainContainerApp />,
+  <MainContainerApp />,
 
   document.getElementById('root')
 );
@@ -19,7 +19,7 @@ ReactDOM.render(
 
 
 
-  
+
 
 
 

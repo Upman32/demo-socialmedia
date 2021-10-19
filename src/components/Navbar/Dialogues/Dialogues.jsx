@@ -12,18 +12,18 @@ const Textarea = Element("textarea");
 
 const Dialogues = (props) => {
 
-  
-  let dialoguesElements = props.dialogues.map (chats => <DialogueItem name={chats.name} key={chats.id} id={chats.id} />)
-  let messagesElements = props.messages.map (part => <Message message={part.message} key={part.id} />);
+
+  let dialoguesElements = props.dialogues.map(chats => <DialogueItem name={chats.name} key={chats.id} id={chats.id} />)
+  let messagesElements = props.messages.map(part => <Message message={part.message} key={part.id} />);
 
 
   let NewMesElement = React.createRef();
 
-  
-      
-    
+
+
+
   let addNewMessage = (values) => {
-   
+
     props.addMes(values.newMessageBody)
   }
 
@@ -31,15 +31,15 @@ const Dialogues = (props) => {
 
 
 
-if (!props.isAuth) return  <Redirect to={"/Login"}/>
-return (
+  if (!props.isAuth) return <Redirect to={"/Login"} />
+  return (
     <div className={c.Dialogues}>
       <div className={c.dialoguesitems}>
         {dialoguesElements}
       </div>
       <div className={c.messages}>
         {messagesElements}
-      <AddMessageFormRedux onSubmit={addNewMessage}/>
+        <AddMessageFormRedux onSubmit={addNewMessage} />
       </div>
     </div>
   )
@@ -49,28 +49,28 @@ return (
 
 
 
-const maxLength50 = MaxLengthCreator(50) 
-const AddMessageForm= (props) => {
+const maxLength50 = MaxLengthCreator(50)
+const AddMessageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-       
-    <div>
-      <Field 
-      placeholder='Enter your message'
-      name='newMessageBody'
-      component={Textarea}
-      validate={[RequiredField, maxLength50]}
-       />
-    </div>  
-    
-    <div>
-      <button>Add Mes</button>
-    </div>
-   
+
+      <div>
+        <Field
+          placeholder='Enter your message'
+          name='newMessageBody'
+          component={Textarea}
+          validate={[RequiredField, maxLength50]}
+        />
+      </div>
+
+      <div>
+        <button>Add Mes</button>
+      </div>
+
     </form>
   )
 }
 const AddMessageFormRedux = reduxForm({
-  form:'Dialogue_addmessageform'
+  form: 'Dialogue_addmessageform'
 })(AddMessageForm)
 export default Dialogues

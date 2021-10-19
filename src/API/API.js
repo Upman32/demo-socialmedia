@@ -1,4 +1,5 @@
 import * as axios from "axios"
+import { saveProfile } from "../components/redux/ProfileReducer"
 import { unfollow } from "../components/redux/UsersReducer"
 
 const instance = axios.create({
@@ -34,12 +35,13 @@ export const authAPI = {
    me:  () => {
        return instance.get(`auth/me`)
    },
-   login: (email, password, rememberme = false) => {
-    return instance.post(`auth/login`, {email, password, rememberme})
+   login: (email, password, rememberme = false, captcha=null) => {
+    return instance.post(`auth/login`, {email, password, rememberme, captcha})
 },
 logout: () => {
     return instance.delete(`auth/login`)
 }
+
 
 }
 
@@ -54,32 +56,27 @@ getStatus(userId) {
 },
 updateStatus(status) {
     return instance.put('profile/status/', {status: status})
+},
+savePhoto(photoFile) {
+    const formData = new FormData()
+    formData.append("image",photoFile )
+    return instance.put('profile/photo/', formData, {
+        headers: {
+            'Content-type': 'multipart/form-data'
+        }
+    })},
+  
+  
+    saveProfile(profile) { 
+        return instance.put('profile/', profile)
+    }}
+
+
+export const securityAPI = {
+ getCaptchaUrl() {
+     return instance.get('security/get-captcha-url')
+ }
 }
-}
-    
 
 
 
-
-
-
-/* axios.delete(`follow/${u.id}`  )
-.then(response => {
- if (response.data.resultCode == 0)  {
-     props.unfollow(u.id);
-}
-})
-
-
-axios.post(`follow/${u.id}`, 
- {
-    withCredentials: true,
-    headers: {
-        "API-KEY": "af9f5ff3-b92b-4a81-92b7-b807edcf9752"
-    }
-})
-.then(response => {
- if (response.data.resultCode == 0)  {
-     props.follow(u.id);
-}
-}) */

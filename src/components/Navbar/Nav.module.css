@@ -1,10 +1,9 @@
 .Nav {
     grid-area: n;
-    background-color: olive;
-    padding: 20px
-  
-  
-  
+    background-color: rgb(136, 42, 25);
+    padding: 20px;
+    border-bottom-left-radius: 15px;
+
   }
   .item a {
     color:white;

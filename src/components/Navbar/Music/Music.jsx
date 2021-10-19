@@ -3,11 +3,11 @@ import c from './Music.module.css'
 
 
 const Music = (props) => {
- return (
-     <div ClassName >
-         Music
-     </div>
- )
+    return (
+        <div ClassName >
+            Music
+        </div>
+    )
 
 
 

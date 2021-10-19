@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import classes from './Nav.module.css'
 import React from 'react'
 
-const Nav = () => { 
+const Nav = () => {
 
   return <nav className={classes.Nav}>
 
@@ -13,18 +13,18 @@ const Nav = () => {
       <NavLink to="/dialogues" activeClassName={classes.activeLink}>Messages</NavLink>
     </div>
     <div className={classes.item}>
-    <NavLink to="/News" activeClassName={classes.activeLink}>News</NavLink>
+      <NavLink to="/Game" activeClassName={classes.activeLink}>Game</NavLink>
     </div>
     <div className={classes.item}>
-    <NavLink to="/Users" activeClassName={classes.activeLink}>Users</NavLink>
+      <NavLink to="/Users" activeClassName={classes.activeLink}>Users</NavLink>
     </div>
     <div className={classes.item}>
-    <NavLink to="/Music" activeClassName={classes.activeLink}>Music</NavLink>
+      <NavLink to="/Music" activeClassName={classes.activeLink}>Music</NavLink>
     </div>
     <div className={classes.item}>
-    <NavLink to="/Settings" activeClassName={classes.activeLink}>Settings</NavLink>
+      <NavLink to="/Settings" activeClassName={classes.activeLink}>Settings</NavLink>
     </div>
 
   </nav>
-} 
+}
 export default Nav

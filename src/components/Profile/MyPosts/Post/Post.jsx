@@ -5,10 +5,11 @@ const Post = (props) => {
 
 
     return (
-        
+
         <div className={classes.item}>
-          <img src='https://i.pinimg.com/originals/50/ee/c4/50eec4082bceec8547dba21ddfc45326.jpg' alt='LogoImage' />
-           {props.message} 
+            <img src='https://static.wikia.nocookie.net/wowpedia/images/d/d1/Peon_face_WC3.jpg'
+             alt='LogoImage' />
+            {props.message}
             <div>
                 <span>like</span> {props.likecounts}
             </div>

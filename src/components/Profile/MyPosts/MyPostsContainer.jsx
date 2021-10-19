@@ -5,6 +5,63 @@ import {connect} from 'react-redux'
 
 
 
+
+
+
+
+
+let mapsStateToProps = (state) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
+}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPost:(newPostText) => {
+            dispatch(addPostActionCreator(newPostText));
+        }
+    
+    
+    
+
+    }
+}
+
+
+const MyPostsContainer = connect(mapsStateToProps, mapDispatchToProps)(MyPosts);
+
+
+
+export default MyPostsContainer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* const MyPostsContainer = (props) => {
 /*     let state = props.store.getState()
  */
@@ -49,32 +106,3 @@ import {connect} from 'react-redux'
 
 
 } */ 
-
-
-
-
-
-let mapsStateToProps = (state) => {
-    return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
-    }
-}
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addPost:(newPostText) => {
-            dispatch(addPostActionCreator(newPostText));
-        }
-    
-    
-    
-
-    }
-}
-
-
-const MyPostsContainer = connect(mapsStateToProps, mapDispatchToProps)(MyPosts);
-
-
-
-export default MyPostsContainer
