@@ -16,10 +16,10 @@ const ProfileDescriptionForm = ({handleSubmit, profile, error}) => {
 {error}
 </div>}
   <div>
-      <b>Fullname</b>                       {Frex("Nickname", "fullName", [], Input)}
+      <b>Fullname</b>                     {Frex("Nickname", "fullName", [], Input)}
   </div>
   <div>
-      <b> Looking for a job</b>            {Frex("","lookingForAJob", [], Input, {type: "checkbox"} )}
+      <b> Looking for a job</b>           {Frex("","lookingForAJob", [], Input, {type: "checkbox"} )}
   </div>
   <div>
       <b>Skills</b>                       {Frex("My prof. skills","lookingForAJobDescription", [], Textarea)}

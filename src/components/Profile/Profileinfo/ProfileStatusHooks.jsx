@@ -43,11 +43,11 @@ const ProfileStatusHooks = (props) => {
 
       <div>
          {!editMode &&
-            <div>
+            <div className={c.Background}>
 
-               <b>Status: </b>
+               <b className={c.Background}>Status: </b>
 
-               <span onDoubleClick={activate} >
+               <span className={c.Background} onDoubleClick={activate} >
 
                   {props.status || "==="}
 

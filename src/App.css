@@ -1,7 +1,7 @@
 .app-wrapper {
   margin: 0 auto;
   display: grid;
-  width: 1200px;
+  width: 95%;
  grid-template-areas:
  "h h"
  "n c";
@@ -20,8 +20,24 @@
 }
 .app-wrapper-content {
 grid-area: c;
-background-color: rgb(163, 28, 4);
+background-color: rgb(23, 177, 18);
 border-bottom-right-radius:15px ;
-  
+
 
 }
+@media (max-width:1200px) {
+.app-wrapper {
+  max-width:970px;
+}  
+}
+@media (max-width:992px) {
+  .app-wrapper {
+    max-width:750px;
+  }  
+  }
+  @media (max-width:768px) {
+    .app-wrapper {
+      max-width:none;
+    }  
+    }
+      

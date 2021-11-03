@@ -1,5 +1,6 @@
 .descriptionBlock {
-  padding: 10px
+  padding: 10px;
+  background-color: rgb(23, 177, 18);
 }
 .mainPhoto {
   max-width: 256px;
@@ -8,4 +9,8 @@
 }
 .contact {
   padding-left: 10px;
+  background-color: rgb(23, 177, 18);
+}
+.Background {
+  background-color: rgb(23, 177, 18);
 }

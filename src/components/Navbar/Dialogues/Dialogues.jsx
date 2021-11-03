@@ -17,13 +17,12 @@ const Dialogues = (props) => {
   let messagesElements = props.messages.map(part => <Message message={part.message} key={part.id} />);
 
 
-  let NewMesElement = React.createRef();
+
 
 
 
 
   let addNewMessage = (values) => {
-
     props.addMes(values.newMessageBody)
   }
 
@@ -32,6 +31,7 @@ const Dialogues = (props) => {
 
 
   if (!props.isAuth) return <Redirect to={"/Login"} />
+
   return (
     <div className={c.Dialogues}>
       <div className={c.dialoguesitems}>
@@ -50,6 +50,7 @@ const Dialogues = (props) => {
 
 
 const maxLength50 = MaxLengthCreator(50)
+
 const AddMessageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>

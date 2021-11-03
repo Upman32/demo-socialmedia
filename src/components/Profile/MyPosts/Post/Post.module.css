@@ -1,6 +1,6 @@
  .item { 
-    color: black
-
+    color: black;
+    background-color: rgb(23, 177, 18);
     
   }
   .item img {
@@ -8,3 +8,4 @@
     height: 40px;
     border-radius: 25px;
   }
+ 
