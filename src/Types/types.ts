@@ -33,3 +33,4 @@ export type userType = {
     photos:PhotosType
     followed: boolean
 }
+

@@ -5,7 +5,7 @@ import React from 'react'
 import { Redirect } from 'react-router'
 import { Field as button, Field, reduxForm } from 'redux-form'
 import { Element } from '../../common/Forms_Control/Form_Control'
-import { maxLength30, MaxLengthCreator, RequiredField } from '../../../Utils/Validators'
+import { maxLength30, MaxLengthCreator, RequiredField } from '../../../Utils/Validators/Validate'
 
 const Textarea = Element("textarea");
 

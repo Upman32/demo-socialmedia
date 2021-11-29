@@ -37,7 +37,7 @@ export type initialStateType = typeof initialState
 
 
 
-const DialoguesReducer = (state = initialState , action: any) => 
+const DialoguesReducer = (state = initialState, action: addMesActionCreatorType) => 
 
 {
 
@@ -46,17 +46,13 @@ const DialoguesReducer = (state = initialState , action: any) =>
        
          case ADD_MES:
             let newMes = action.newMessageBody
-
+            
            return  {
                 ...state,
-               messages: [...state.messages,{id:6, message:newMes}]
+               messages: [...state.messages,{id:6, message:newMes, }]
             }           
          
         
-      
-          
-       
-    
         default:
         return state;
      }
@@ -67,7 +63,7 @@ type: typeof ADD_MES
 newMessageBody:string
     }
  
-    export const addMesActionCreator = (newMessageBody: string) => ({type:'ADD_MES', newMessageBody})
+    export const addMesActionCreator = (newMessageBody: string): addMesActionCreatorType => ({type:'ADD_MES', newMessageBody})
       
     
     

@@ -17,8 +17,15 @@ let reducers = combineReducers({
     app: AppReducer
 });
 
-let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+type RootReducerType = typeof reducers;
+export type AppstateType = ReturnType<RootReducerType>  
 
-window.store = store;
+type PropertiesType<T> = T extends {[key:string]: infer U} ? U : never 
+
+export type InferActionsTypes<T extends {[key:string]: (...args: any[]) => any}> = ReturnType<PropertiesType<T>>
+
+let store = createStore(reducers, applyMiddleware(thunkMiddleware))
+// @ts-ignore
+window.store = store
 
 export default store
