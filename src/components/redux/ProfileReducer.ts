@@ -1,15 +1,12 @@
-import React from 'react'
 import { FormAction, stopSubmit } from "redux-form"
 import { profileAPI } from "../../API/API"
 import { PhotosType, PostType, ProfileType } from '../../Types/types'
 import { CommonThunkType, InferActionsTypes } from './reduxs'
 
-
 const ADD_POST = 'ADD_POST'
 const SET_PROFILE_USER = 'SET_PROFILE_USER'
 const SET_STATUS = 'SET_STATUS'
 const SET_PHOTO = 'SET_PHOTO'
-
 
 let initialState = {
     posts: [
@@ -26,7 +23,7 @@ let initialState = {
 }
 
 export type initialStateType = typeof initialState
-type ActionsType  = InferActionsTypes<typeof actions>
+type ActionsType = InferActionsTypes<typeof actions>
 const profileReducer = (state = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case ADD_POST:
@@ -37,7 +34,7 @@ const profileReducer = (state = initialState, action: ActionsType): initialState
             }
             return {
                 ...state,
-               posts: [...state.posts, newPost]
+                posts: [...state.posts, newPost]
             }
 
         case SET_PROFILE_USER:
@@ -48,7 +45,7 @@ const profileReducer = (state = initialState, action: ActionsType): initialState
         case SET_STATUS:
             return {
                 ...state,
-                status: action.status 
+                status: action.status
             }
         case SET_PHOTO:
             return {
@@ -63,12 +60,12 @@ export const actions = {
     addPostActionCreator: (newPostText: string) => {
         return ({
             type: 'ADD_POST', newPostText
-        } as const )
+        } as const)
     },
     SetUserProfile: (profile: ProfileType) => {
         return ({
             type: 'SET_PROFILE_USER', profile
-        } as const )
+        } as const)
     },
     SetStatus: (status: string) => {
         return ({
@@ -79,12 +76,8 @@ export const actions = {
         return ({
             type: 'SET_PHOTO', photos
         } as const)
-    } 
+    }
 }
-
-
-
-
 
 type ThunkType = CommonThunkType<ActionsType | FormAction>
 
@@ -126,11 +119,11 @@ export const saveProfile = (profile: ProfileType): ThunkType => async (dispatch,
     const data = await profileAPI.saveProfile(profile)
 
     if (data.resultCode === 0) {
-      if( userId!= null){
-        dispatch(getUserProfile(userId))
-    } else {
-        throw new Error("userId can't be null")
-    }
+        if (userId != null) {
+            dispatch(getUserProfile(userId))
+        } else {
+            throw new Error("userId can't be null")
+        }
     } else {
         dispatch(stopSubmit('edit-profile', { _error: data.messages[0] }))
         return Promise.reject(data.messages[0])

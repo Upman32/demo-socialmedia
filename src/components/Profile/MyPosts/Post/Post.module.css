@@ -1,11 +1,10 @@
- .item { 
-    color: black;
-    background-color: rgb(23, 177, 18);
-    
-  }
-  .item img {
-    width: 40px;
-    height: 40px;
-    border-radius: 25px;
-  }
+ .item {
+     color: black;
+     background-color: rgb(23, 177, 18);
+ }
  
+ .item img {
+     width: 40px;
+     height: 40px;
+     border-radius: 25px;
+ }

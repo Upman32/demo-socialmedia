@@ -14,7 +14,7 @@ let mapsStateToProps = (state: AppstateType) => {
   }
 }
 
-export default compose<React.ComponentType>(
-  connect(mapsStateToProps, {addMesAction: actions.addMesAction}),
+export default compose<React.ComponentType>
+(connect(mapsStateToProps, { ...actions }),
   withAuthRedirect
 )(Dialogues)

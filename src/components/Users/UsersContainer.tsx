@@ -3,16 +3,16 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Preloader from '../common/preloader'
 import { getisFetching } from '../redux/user-selectors'
-import { Users } from './Users'
+import { WithAuthRedirectUsers } from './Users'
 
-type UsersPagePropstype =  {
+type UsersPagePropstype = {
 
 }
-export const UsersPage:React.FC<UsersPagePropstype> = (props) => {
-  const isFetching =  useSelector(getisFetching)
+export const UsersPage: React.FC<UsersPagePropstype> = (props) => {
+  const isFetching = useSelector(getisFetching)
   return <>
-  {isFetching ? <Preloader /> : null}
-    <Users /></>
-} 
+    {isFetching ? <Preloader /> : null}
+    <WithAuthRedirectUsers /></>
+}
 
 

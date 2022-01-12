@@ -1,16 +1,18 @@
 .descriptionBlock {
-  padding: 10px;
-  background-color: rgb(23, 177, 18);
+    padding: 10px;
+    background-color: rgb(23, 177, 18);
 }
+
 .mainPhoto {
-  max-width: 256px;
-  max-height: 256px;
-  
+    max-width: 256px;
+    max-height: 256px;
 }
+
 .contact {
-  padding-left: 10px;
-  background-color: rgb(23, 177, 18);
+    padding-left: 10px;
+    background-color: rgb(23, 177, 18);
 }
+
 .Background {
-  background-color: rgb(23, 177, 18);
+    background-color: rgb(23, 177, 18);
 }

@@ -1,22 +1,22 @@
 import React from 'react'
-import {  InjectedFormProps, reduxForm } from 'redux-form'
+import { InjectedFormProps, reduxForm } from 'redux-form'
 import { PostType } from '../../../Types/types'
-import {  RequiredField } from '../../../Utils/Validators/Validate'
-import { Element, Frex } from '../../common/Forms_Control/Form_Control'
+import { RequiredField } from '../../../Utils/Validators/Validate'
+import { Element, Form } from '../../common/Forms_Control/Form_Control'
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
 
-export type PropsPoststype  ={
+export type PropsPoststype = {
     posts: Array<PostType>
-} 
-export type PropsDispatchPoststype  ={
+}
+export type PropsDispatchPoststype = {
     addPost: (newPostText: string) => void
 }
 const MyPosts: React.FC<PropsPoststype & PropsDispatchPoststype> = (props) => {
 
     let PostElements = props.posts.map(posting => <Post key={posting.id} message={posting.message} likecounts={posting.likecounts} />)
-    let Postadd = (values:AddPostFormValues) => {
+    let Postadd = (values: AddPostFormValues) => {
         props.addPost(values.newPostText)
     }
 
@@ -37,12 +37,12 @@ type PropsFormType = {}
 export type AddPostFormValues = {
     newPostText: string
 }
-const AddPostForm: React.FC<InjectedFormProps<AddPostFormValues, PropsFormType>& PropsFormType> = (props) => {
+const AddPostForm: React.FC<InjectedFormProps<AddPostFormValues, PropsFormType> & PropsFormType> = (props) => {
     return (
-        <form onSubmit={props.handleSubmit}>  
-        <div>
-        {Frex("Your post", "newPostText", [RequiredField], Textarea)}
-        </div>
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                {Form("Your post", "newPostText", [RequiredField], Textarea)}
+            </div>
             <div>
                 <button>Add Post</button>
             </div>

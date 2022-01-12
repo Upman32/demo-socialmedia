@@ -3,12 +3,13 @@
     grid-template-columns: 2fr 10fr;
 }
 
-.dialoguesitems{
+.dialoguesitems {
     padding: 10px;
     color: black;
 }
+
 .dialoguesitems .active {
-    color:rgb(58, 51, 35)
+    color: rgb(58, 51, 35)
 }
 
 .dialogues_link {
@@ -22,19 +23,13 @@
     text-decoration: underline;
 }
 
-.Dialogue{
-    padding:10px;
-    color:blue; 
+.Dialogue {
+    padding: 10px;
+    color: blue;
 }
-.messages {
 
-}
-.messages .message{
-
-}
 .Dialogue img {
     width: 40px;
     height: 40px;
     border-radius: 25px;
-  }
-
+}

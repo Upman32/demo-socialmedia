@@ -11,7 +11,7 @@
  2 ryad 2 stolb - content */
  grid-template-rows: 60px 1fr;
 /* 1 HEADER 60 px, 2 VSE NIJE 1 fraction */
- grid-template-columns: 2fr 10 fr;
+ grid-template-columns: 1fr 10fr;
  /*SIDE-BUTTONS 2 fr, CONTENT 10 fr */
  /* grid-gap: 10px;  */
 }

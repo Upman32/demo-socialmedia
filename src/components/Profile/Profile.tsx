@@ -5,11 +5,11 @@ import MyPostsContainer from './MyPosts/MyPostsContainer'
 import Profileinfo from './Profileinfo/Profileinfo'
 
 type PropsType = {
-  profile: ProfileType | null, 
-  isOwner: boolean, 
-  savePhoto: (file: File) => void, 
-  status: string, 
-  updateStatus: (status: string) => void, 
+  profile: ProfileType | null,
+  isOwner: boolean,
+  savePhoto: (file: File) => void,
+  status: string,
+  updateStatus: (status: string) => void,
   saveProfile: (profile: ProfileType) => Promise<any>
 }
 const Profile: React.FC<PropsType> = (props) => {

@@ -3,8 +3,8 @@ import c from './Profileinfo.module.css'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
 type Propstype = {
-status:string
-updateStatus: (status:string) => void
+   status: string
+   updateStatus: (status: string) => void
 }
 
 const ProfileStatusHooks: React.FC<Propstype> = (props) => {

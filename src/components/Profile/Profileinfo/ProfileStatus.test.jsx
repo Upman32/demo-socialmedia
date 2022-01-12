@@ -6,7 +6,7 @@ import ProfileStatus from './ProfileStatus';
 
 
 
-/* describe("ProfileSta component", () => {
+ describe("ProfileSta component", () => {
    test("it shows the expected text when clicked (testing the wrong way!)", () => {
      const component = create(<ProfileStatus status="yolo" />);
      const root = component.root;
@@ -23,4 +23,4 @@ import ProfileStatus from './ProfileStatus';
      expect(span.innerText).not.toBeNull();
 
    });
- }); */
+ }); 

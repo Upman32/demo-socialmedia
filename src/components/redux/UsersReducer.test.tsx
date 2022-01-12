@@ -1,30 +1,33 @@
 import usersReducer, { actions, initialStateType } from "./UsersReducer"
 
-let states:initialStateType;
-beforeEach(() => {  
+let states: initialStateType;
+beforeEach(() => {
   states = {
-  users: [
-    { id:0, name:'filps', followed:false, photos:{small:null, large:null}, status:'status0' },
-    {
-      id:1, name:'2', followed:false, photos:{small:null, large:null}, status:'status02'
-    },
-    {
-      id:2, name:'3', followed:true, photos:{small:null, large:null}, status:"status03"
-    },
-    {
-      id:3, name:'4', followed:true, photos:{small:null, large:null}, status:"status04"
-    },
-  ],
-  pageSize: 5,
-  totalUserCount: 0,
-  currentPage: 5,
-  isFetching: false,
-  processing: [],
-  filter: {
-    term:'',
-    friend:null as null | boolean
-}
-}})
+    users: [
+      {
+        id: 0, name: 'filps', followed: false, photos: { small: null, large: null }, status: 'status0'
+      },
+      {
+        id: 1, name: '2', followed: false, photos: { small: null, large: null }, status: 'status02'
+      },
+      {
+        id: 2, name: '3', followed: true, photos: { small: null, large: null }, status: "status03"
+      },
+      {
+        id: 3, name: '4', followed: true, photos: { small: null, large: null }, status: "status04"
+      },
+    ],
+    pageSize: 5,
+    totalUserCount: 0,
+    currentPage: 5,
+    isFetching: false,
+    processing: [],
+    filter: {
+      term: '',
+      friend: null as null | boolean
+    }
+  }
+})
 
 test("follow success", () => {
   const newStates = usersReducer(states, actions.acceptfollow(1))

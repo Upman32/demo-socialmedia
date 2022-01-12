@@ -18,13 +18,13 @@ let MapStatetoProps = (state: AppstateType) => ({
 )
 type MapPropsType = ReturnType<typeof MapStatetoProps>
 type DispatchPropsType = {
-    getUserProfile: (userId: number) => void, 
-    getStatus: (userId:number) => void, 
-    updateStatus: (text: string) => void, 
-    savePhoto: (file:File) => void, 
-    saveProfile: (profile:ProfileType) => Promise<any>, 
+    getUserProfile: (userId: number) => void,
+    getStatus: (userId: number) => void,
+    updateStatus: (text: string) => void,
+    savePhoto: (file: File) => void,
+    saveProfile: (profile: ProfileType) => Promise<any>,
 }
-type ParamsType ={
+type ParamsType = {
     userId: string
 }
 type MDtype = MapPropsType & DispatchPropsType & RouteComponentProps<ParamsType>
@@ -39,13 +39,11 @@ class ProfileContainer extends React.Component<MapPropsType & DispatchPropsType 
         }
         this.props.getUserProfile(userId as number);
         this.props.getStatus(userId as number)
-
-
     }
     componentDidMount() {
         this.refreshinfoprof()
     }
-    componentDidUpdate(prevProps:MDtype, prevState: MDtype) {
+    componentDidUpdate(prevProps: MDtype, prevState: MDtype) {
         if (this.props.match.params.userId != prevProps.match.params.userId)
             this.refreshinfoprof()
     }

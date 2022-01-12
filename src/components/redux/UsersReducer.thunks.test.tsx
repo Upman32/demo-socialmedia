@@ -6,15 +6,15 @@ const usersAPImock = usersAPI as jest.Mocked<typeof usersAPI>
 
 const result: ResponseType = {
   resultCode: ResultCodeEnum.Success,
-  messages:[],
-  data:{}
+  messages: [],
+  data: {}
 }
 usersAPImock.follow.mockReturnValue(Promise.resolve(result))
 beforeEach(() => {
   //mockclear
 })
 test("", async () => {
-    
+
   const thunk = follow(3);
   const dispatchMock = jest.fn();
   const getStateMock = jest.fn();

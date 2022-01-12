@@ -6,28 +6,27 @@ import { compose } from 'redux';
 import './App.css';
 import Preloader from './components/common/preloader';
 import HeaderContainer from './components/Header/HeaderContainer';
+import DialoguesContainer from './components/Navbar/Dialogues/DialoguesContainer';
 import Nav from './components/Navbar/Nav';
 import { initializeApp } from './components/redux/AppReducer';
 import { getauthUserData } from './components/redux/AuthReducer';
 import store, { AppstateType } from './components/redux/reduxs';
 import { UsersPage } from './components/Users/UsersContainer';
-import {Login} from './Login/Login';
+import { Login } from './Login/Login';
 
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
 type Propstype = ReturnType<typeof mapStatetoProps>
-type Dispatchtype ={
+type Dispatchtype = {
   initializeApp: () => void
 }
-
 
 class App extends React.Component<Propstype & Dispatchtype> {
   catchAllUnhandledError = (promiseRejectionEvent: PromiseRejectionEvent) => {
     alert("Some error")
   }
   componentDidMount() {
-
     this.props.initializeApp()
     window.addEventListener("unhandledrejection", this.catchAllUnhandledError)
   }
@@ -43,9 +42,12 @@ class App extends React.Component<Propstype & Dispatchtype> {
         <HeaderContainer />
         <Nav />
         <div className='app-wrapper-content'>
-
           <Redirect from="/" to="/profile" />
-
+          <Route path='/Dialogues' render={() => {
+            return <Suspense fallback={<div>Loading</div>}>
+              <DialoguesContainer
+              /> </Suspense>
+          }} />
 
           <Route path='/Profile/:userId?' render={() => {
             return <Suspense fallback={<div>Loading</div>}><ProfileContainer
@@ -57,9 +59,7 @@ class App extends React.Component<Propstype & Dispatchtype> {
           <Route path='/Login' render={() => <Login
           />} />
         </div>
-
       </div>
-
     )
   }
 }
@@ -75,7 +75,6 @@ const MainContainerApp: React.FC = () => {
         <AppContainer />
       </Provider>
     </BrowserRouter>)
-
 }
 
 export default MainContainerApp

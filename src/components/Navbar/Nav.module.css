@@ -3,22 +3,23 @@
     background-color: rgb(31, 112, 14);
     padding: 20px;
     border-bottom-left-radius: 15px;
-  }
-  .item a {
+}
+
+.item a {
     background-color: rgb(31, 112, 14);
-    color:white;
-    text-decoration: none; 
-  }
-  .item a.activeLink {
+    color: white;
+    text-decoration: none;
+}
+
+.item a.activeLink {
     color: gold
-  }
+}
 
-
-
-  .item {
+.item {
     background-color: rgb(31, 112, 14);
-    color:white;
-  }
-  .item.active {
+    color: white;
+}
+
+.item.active {
     color: black;
-  }
+}

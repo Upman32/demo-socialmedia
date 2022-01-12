@@ -9,6 +9,7 @@ import AppReducer from "./AppReducer";
 
 
 let reducers = combineReducers({
+    messagesPage: DialoguesReducer,
     profilePage: profileReducer,
     usersPage: usersReducer,
     auth: AuthReducer,
@@ -18,7 +19,6 @@ let reducers = combineReducers({
 
 type RootReducerType = typeof reducers;
 export type AppstateType = ReturnType<RootReducerType>
-
 export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 export type CommonThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppstateType, unknown, A>
 

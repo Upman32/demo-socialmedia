@@ -8,7 +8,6 @@ const instance = axios.create({
         "API-KEY": "5bd3fbce-427e-4214-8a7a-6d6740c2fa49"
     }
 })
-
 type GetUsersItems = {
     items: Array<userType>
     totalCount: number
@@ -20,14 +19,13 @@ export type ResponseType<D = {}, RC = ResultCodeEnum> = {
     resultCode: RC
 }
 type SavePhotoType = {
-    photos:PhotosType
+    photos: PhotosType
 }
 export enum ResultCodeEnum {
     Success = 0,
     Error = 1,
     CaptchaisRequired = 10
 }
-
 type MeResponseType = {
     id: number
     email: string
@@ -35,11 +33,10 @@ type MeResponseType = {
 }
 type LoginResponseType = {
     userId: number
-
 }
 
 export const usersAPI = {
-    getUsers(currentPage: number, pageSize: number, term: string = '', friend: null | boolean =null)    {
+    getUsers(currentPage: number, pageSize: number, term: string = '', friend: null | boolean = null) {
         return instance.get<GetUsersItems>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? '' : `&friend=${friend}`))
             .then(response => { return response.data })
     },
@@ -48,12 +45,8 @@ export const usersAPI = {
 
     },
     unfollow(userId: number) {
-        return instance.delete( `follow/${userId}`).then(res => res.data) as Promise<ResponseType>
+        return instance.delete(`follow/${userId}`).then(res => res.data) as Promise<ResponseType>
     },
-  /*   getProfile(userId: number) {
-        console.warn('old method. Use profileAPi')
-        return profileAPI.getProfile(userId)
-    } */
 }
 
 export const authAPI = {
@@ -99,7 +92,7 @@ export const profileAPI = {
 }
 
 type GetCaptchaUrlType = {
-    url:string
+    url: string
 }
 export const securityAPI = {
     getCaptchaUrl() {
