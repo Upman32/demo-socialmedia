@@ -1,45 +1,51 @@
 
 import React from 'react';
 import Profile from './Profile'
-
 import { connect } from 'react-redux';
 import { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile } from '../redux/ProfileReducer';
-import { Redirect, withRouter } from 'react-router';
+import { Redirect, RouteComponentProps, withRouter } from 'react-router';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
+import { AppstateType } from '../redux/reduxs';
+import { ProfileType } from '../../Types/types';
 
-
-
-
-
-let MapStatetoProps = (state) => ({
+let MapStatetoProps = (state: AppstateType) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     loguserId: state.auth.userId,
     isAuth: state.auth.isAuth
-
 }
 )
-
-class ProfileContainer extends React.Component {
+type MapPropsType = ReturnType<typeof MapStatetoProps>
+type DispatchPropsType = {
+    getUserProfile: (userId: number) => void, 
+    getStatus: (userId:number) => void, 
+    updateStatus: (text: string) => void, 
+    savePhoto: (file:File) => void, 
+    saveProfile: (profile:ProfileType) => Promise<any>, 
+}
+type ParamsType ={
+    userId: string
+}
+type MDtype = MapPropsType & DispatchPropsType & RouteComponentProps<ParamsType>
+class ProfileContainer extends React.Component<MapPropsType & DispatchPropsType & RouteComponentProps<ParamsType>> {
     refreshinfoprof() {
-        let userId = this.props.match.params.userId
+        let userId: number | null = +this.props.match.params.userId
         if (!userId) {
             userId = this.props.loguserId
             if (!userId) {
                 this.props.history.push("/login")
             }
         }
-        this.props.getUserProfile(userId);
-
-        this.props.getStatus(userId)
+        this.props.getUserProfile(userId as number);
+        this.props.getStatus(userId as number)
 
 
     }
     componentDidMount() {
         this.refreshinfoprof()
     }
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps:MDtype, prevState: MDtype) {
         if (this.props.match.params.userId != prevProps.match.params.userId)
             this.refreshinfoprof()
     }
@@ -61,10 +67,9 @@ class ProfileContainer extends React.Component {
 }
 
 
-export default compose(
+export default compose<React.ComponentType>(
     connect(MapStatetoProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile }),
     withRouter, withAuthRedirect
-
 )(ProfileContainer)
 
 

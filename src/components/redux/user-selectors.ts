@@ -22,3 +22,6 @@ export const getisFetching= (state: AppstateType)=>{
 export const getisProcessing= (state: AppstateType)=>{
     return state.usersPage.processing
 }
+export const getUsersFilter = (state: AppstateType)=>{
+    return state.usersPage.filter
+}

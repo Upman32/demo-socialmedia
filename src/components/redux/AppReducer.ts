@@ -1,52 +1,42 @@
 import { ThunkAction } from "redux-thunk"
 import { getauthUserData } from "./AuthReducer"
-import { AppstateType } from "./reduxs"
-
-
-const SET_INITIALIZED = 'SET_INITIALIZED'
+import { AppstateType, InferActionsTypes } from "./reduxs"
 
 
 
-type initialStatetype = {
-    initialized: boolean
-}
 
-let initialState: initialStatetype = {
+let initialState = {
 initialized: false,
-
 }
 
 
+export type initialStatetype = typeof initialState
+type ACT = InferActionsTypes<typeof actions>
 
-
-const AppReducer = (state = initialState, action: setInitializedActiontype): initialStatetype => {
+const AppReducer = (state = initialState, action: ACT): initialStatetype => {
     switch (action.type) {
-        case SET_INITIALIZED:
+case 'APP/SOCIAL/SET_INITIALIZED':
            return  {
                 ...state,
                 initialized: true ,
-          
     }
     default:
         return state
     }
 }
 
-type setInitializedActiontype =
-{
-    type: typeof SET_INITIALIZED
+
+const actions  = {
+    setInitialized:() => ({type:'APP/SOCIAL/SET_INITIALIZED'} as const)
 }
 
-export const setInitialized =
- (): setInitializedActiontype => 
- ({type:SET_INITIALIZED})
 
 
 
 
 export const initializeApp = () => (dispatch: any) => {
   let promise = dispatch( getauthUserData())
-  Promise.all([promise]).then(() =>{ dispatch( setInitialized())
+  Promise.all([promise]).then(() =>{ dispatch(actions.setInitialized())
 })
 }
 

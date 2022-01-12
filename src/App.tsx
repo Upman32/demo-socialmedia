@@ -6,25 +6,25 @@ import { compose } from 'redux';
 import './App.css';
 import Preloader from './components/common/preloader';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Music from './components/Navbar/Music/Music';
 import Nav from './components/Navbar/Nav';
-import Settings from './components/Navbar/Settings/Settings';
 import { initializeApp } from './components/redux/AppReducer';
 import { getauthUserData } from './components/redux/AuthReducer';
-import store from './components/redux/reduxs';
-import Game from './components/TicTacToe/TicTacToe';
-import UsersContainer from './components/Users/UsersContainer';
-import Login from './Login/Login';
+import store, { AppstateType } from './components/redux/reduxs';
+import { UsersPage } from './components/Users/UsersContainer';
+import {Login} from './Login/Login';
 
 
-const DialoguesContainer = React.lazy(() => import('./components/Navbar/Dialogues/DialoguesContainer'));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
+type Propstype = ReturnType<typeof mapStatetoProps>
+type Dispatchtype ={
+  initializeApp: () => void
+}
 
-class App extends React.Component {
-  catchAllUnhandledError = (promiseRejectionEvent) => {
+
+class App extends React.Component<Propstype & Dispatchtype> {
+  catchAllUnhandledError = (promiseRejectionEvent: PromiseRejectionEvent) => {
     alert("Some error")
-    //console.error(promiseRejectionEvent)
   }
   componentDidMount() {
 
@@ -35,16 +35,10 @@ class App extends React.Component {
     window.removeEventListener("unhandledrejection", this.catchAllUnhandledError)
   }
   render() {
-
-
     if (!this.props.initialized) {
       return <Preloader />
     }
-
-
     return (
-
-
       <div className='app-wrapper' >
         <HeaderContainer />
         <Nav />
@@ -52,34 +46,16 @@ class App extends React.Component {
 
           <Redirect from="/" to="/profile" />
 
-          <Route path='/Dialogues' render={() => {
-            return <Suspense fallback={<div>Loading</div>}>
-              <DialoguesContainer
-
-
-              /> </Suspense>
-          }} />
 
           <Route path='/Profile/:userId?' render={() => {
             return <Suspense fallback={<div>Loading</div>}><ProfileContainer
             /> </Suspense>
           }} />
-
-          <Route path='/Users' render={() => <UsersContainer
+          <Route path='/Users' render={() => <UsersPage
           />}
-
           />
           <Route path='/Login' render={() => <Login
-          />}
-
-          />
-
-
-
-          <Route path='/Game' render={() => <Game />} />
-          <Route path='/Music' component={Music} />
-          <Route path='/Settings' component={Settings} />
-
+          />} />
         </div>
 
       </div>
@@ -87,16 +63,12 @@ class App extends React.Component {
     )
   }
 }
-
-const mapStatetoProps = (state) => ({
+const mapStatetoProps = (state: AppstateType) => ({
   initialized: state.app.initialized
 })
-
-let AppContainer = compose
+let AppContainer = compose<React.ComponentType>
   (connect(mapStatetoProps, { initializeApp, getauthUserData }))(App)
-
-
-const MainContainerApp = (props) => {
+const MainContainerApp: React.FC = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>

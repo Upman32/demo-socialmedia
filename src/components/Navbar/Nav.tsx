@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import classes from './Nav.module.css'
 import React from 'react'
 
-const Nav = () => {
+const Nav:React.FC = () => {
 
   return <nav className={classes.Nav}>
 

@@ -1,23 +1,32 @@
 import Preloader from '../../common/preloader'
 import c from './Profileinfo.module.css'
-import React, { useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import ProfileStatusHooks from './ProfileStatusHooks'
 import userPhoto from '../../../images/Worker.jpg'
 import ProfileDescriptionFormReduxForm from './ProfDescForm'
+import { ContactsType, ProfileType } from '../../../Types/types'
 
-const Profileinfo = ({ profile, isOwner, savePhoto, status, updateStatus, saveProfile }) => {
+type PropsType = {
+    profile: ProfileType | null, 
+    isOwner: boolean, 
+    savePhoto: (file: File) => void, 
+    status: string, 
+    updateStatus: (status: string) => void, 
+    saveProfile: (profile: ProfileType) => Promise<any>
+}
+const Profileinfo: React.FC<PropsType> = ({ profile, isOwner, savePhoto, status, updateStatus, saveProfile }) => {
     let [editMode, seteditMode] = useState(false)
 
 
     if (!profile) {
         return <Preloader />
     }
-    const mainPhotoselectedon = (e) => {
-        if (e.target.files.length) {
+    const mainPhotoselectedon = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
             savePhoto(e.target.files[0]);
         }
     }
-    const onSubmit = (formData) => {
+    const onSubmit = (formData: ProfileType) => {
         saveProfile(formData).then(() => {
             seteditMode(false)
         })
@@ -27,12 +36,6 @@ const Profileinfo = ({ profile, isOwner, savePhoto, status, updateStatus, savePr
     return (
 
         <div>
-
-
-
-
-
-
             <div className={c.descriptionBlock}>
                 <img src={profile.photos.large || userPhoto} className={c.mainPhoto} />
                 {isOwner && <input type="file" onChange={mainPhotoselectedon} />}
@@ -48,7 +51,13 @@ const Profileinfo = ({ profile, isOwner, savePhoto, status, updateStatus, savePr
         </div>
     )
 }
-const ProfileDescription = ({ profile, isOwner, goToEditMode }) => {
+
+type ProfileDescType = {
+    profile: ProfileType
+    isOwner: boolean
+    goToEditMode: ()=> void
+}
+const ProfileDescription:React.FC<ProfileDescType> = ({ profile, isOwner, goToEditMode }) => {
     return <div>
         {isOwner && <div> <button onClick={goToEditMode} >EDIT</button></div>}
         <div>
@@ -64,15 +73,17 @@ const ProfileDescription = ({ profile, isOwner, goToEditMode }) => {
             <b> About me </b>{profile.aboutMe}
         </div>
         <div>
-            <b>Contacts</b> : {Object.keys(profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
-            })}
+            <b>Contacts</b> : {Object.keys(profile.contacts).map((key) => {
+                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />})}
         </div>
     </div>
 }
 
-
-const Contact = ({ contactTitle, contactValue }) => {
+type ContactsPropsType = {
+    contactTitle: string 
+    contactValue: string 
+}
+const Contact:React.FC<ContactsPropsType> = ({ contactTitle, contactValue }) => {
     return <div className={c.contact}><b>{contactTitle} </b>: {contactValue} </div>
 }
 

@@ -3,35 +3,28 @@ import DialogueItem from './Dialogue/Item'
 import Message from './Posting/Posting'
 import React from 'react'
 import { Redirect } from 'react-router'
-import { Field as button, Field, reduxForm } from 'redux-form'
-import { Element } from '../../common/Forms_Control/Form_Control'
-import { maxLength30, MaxLengthCreator, RequiredField } from '../../../Utils/Validators/Validate'
+import { Field as button, Field, InjectedFormProps, reduxForm } from 'redux-form'
+import { Element, Frex } from '../../common/Forms_Control/Form_Control'
+import { MaxLengthCreator, RequiredField } from '../../../Utils/Validators/Validate'
+import { DialogueType, MessageType } from '../../redux/DialoguesReducer'
 
 const Textarea = Element("textarea");
+type OwnPropsType = {
+  dialogues: Array<DialogueType>
+  messages: Array<MessageType>
+  addMes: (MessageText: string) => void
+}
+type newMessageform = {
+  newMessageBody: string
+}
+type newMessageFormKeyType = Extract<keyof newMessageform, string> 
 
-
-const Dialogues = (props) => {
-
-
+const Dialogues: React.FC<OwnPropsType> = (props) => {
   let dialoguesElements = props.dialogues.map(chats => <DialogueItem name={chats.name} key={chats.id} id={chats.id} />)
   let messagesElements = props.messages.map(part => <Message message={part.message} key={part.id} />);
-
-
-
-
-
-
-
-  let addNewMessage = (values) => {
+  let addNewMessage = (values: newMessageform) => {
     props.addMes(values.newMessageBody)
   }
-
-
-
-
-
-  if (!props.isAuth) return <Redirect to={"/Login"} />
-
   return (
     <div className={c.Dialogues}>
       <div className={c.dialoguesitems}>
@@ -43,35 +36,23 @@ const Dialogues = (props) => {
       </div>
     </div>
   )
-
-
 }
 
-
-
 const maxLength50 = MaxLengthCreator(50)
-
-const AddMessageForm = (props) => {
+type Propstype= {}
+const AddMessageForm:  React.FC<InjectedFormProps<newMessageform, Propstype>& Propstype> = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-
       <div>
-        <Field
-          placeholder='Enter your message'
-          name='newMessageBody'
-          component={Textarea}
-          validate={[RequiredField, maxLength50]}
-        />
+        {Frex("Enter your message", 'newMessageBody', [RequiredField, maxLength50], Textarea)}
       </div>
-
       <div>
         <button>Add Mes</button>
-      </div>
-
+      </div>  
     </form>
   )
 }
-const AddMessageFormRedux = reduxForm({
+const AddMessageFormRedux = reduxForm<newMessageform >({
   form: 'Dialogue_addmessageform'
 })(AddMessageForm)
 export default Dialogues

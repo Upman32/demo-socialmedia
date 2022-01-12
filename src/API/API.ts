@@ -1,13 +1,12 @@
-import axios, { AxiosPromise } from "axios"
+import axios from "axios"
 import { PhotosType, ProfileType, userType } from "../Types/types"
 
 const instance = axios.create({
     withCredentials: true,
-    baseURL: "https://social-network.samuraijs.com/api/1.0/",
+    baseURL: "https://social-network.samuraijs.com/api/1.0",
     headers: {
         "API-KEY": "5bd3fbce-427e-4214-8a7a-6d6740c2fa49"
     }
-
 })
 
 type GetUsersItems = {
@@ -15,25 +14,7 @@ type GetUsersItems = {
     totalCount: number
     error: string | null
 }
-
-export const usersAPI = {
-    getUsers(currentPage: number, pageSize: number) {
-        return instance.get<GetUsersItems>(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => { return response.data })
-    },
-    follow(userId: number) {
-        return instance.post<ResponseType>(`follow/${userId}`).then(res => res.data)
-
-    },
-    unfollow(userId: number) {
-        return instance.delete( `follow/${userId}`).then(res => res.data) as Promise<ResponseType>
-    },
-    getProfile(userId: number) {
-        console.warn('old method. Use profileAPi')
-        return profileAPI.getProfile(userId)
-    }
-}
-type ResponseType<D = {}, RC = ResultCodeEnum> = {
+export type ResponseType<D = {}, RC = ResultCodeEnum> = {
     data: D
     messages: Array<string>
     resultCode: RC
@@ -56,6 +37,25 @@ type LoginResponseType = {
     userId: number
 
 }
+
+export const usersAPI = {
+    getUsers(currentPage: number, pageSize: number, term: string = '', friend: null | boolean =null)    {
+        return instance.get<GetUsersItems>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? '' : `&friend=${friend}`))
+            .then(response => { return response.data })
+    },
+    follow(userId: number) {
+        return instance.post<ResponseType>(`follow/${userId}`).then(res => res.data)
+
+    },
+    unfollow(userId: number) {
+        return instance.delete( `follow/${userId}`).then(res => res.data) as Promise<ResponseType>
+    },
+  /*   getProfile(userId: number) {
+        console.warn('old method. Use profileAPi')
+        return profileAPI.getProfile(userId)
+    } */
+}
+
 export const authAPI = {
     me: () => {
         return instance.get<ResponseType<MeResponseType>>(`auth/me`).then((res) => res.data)
@@ -82,7 +82,7 @@ export const profileAPI = {
     updateStatus(status: string) {
         return instance.put<ResponseType>('profile/status/', { status: status }).then(res => res.data)
     },
-    savePhoto(photoFile: string | Blob) {
+    savePhoto(photoFile: File) {
         const formData = new FormData()
         formData.append("image", photoFile)
         return instance.put<ResponseType<SavePhotoType>>('profile/photo/', formData, {
@@ -98,10 +98,12 @@ export const profileAPI = {
     }
 }
 
-
+type GetCaptchaUrlType = {
+    url:string
+}
 export const securityAPI = {
     getCaptchaUrl() {
-        return instance.get('security/get-captcha-url')
+        return instance.get<GetCaptchaUrlType>('security/get-captcha-url').then(res => res.data)
     }
 }
 

@@ -2,15 +2,14 @@
     grid-area: h;
     background-color:rgb(9, 100, 16); 
     border-top-right-radius: 15px;
-    
+
     }
     .header img {
       width: 60px;
       height:50px;
     }
     .LB {
-      background-color:rgb(9, 100, 16); 
-
+      background-color:rgb(9, 100, 16);
     }
   
     .loginBlock {
@@ -20,7 +19,6 @@
      border-top-right-radius: 15px;
     }
     .loginBlock a {
-   
       color: white
     }
    

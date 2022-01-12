@@ -1,19 +1,16 @@
+import { InferActionsTypes } from "./reduxs"
+
  const ADD_MES = 'ADD_MES'
-
-
-type MessageType = {
+export type MessageType = {
     id:number 
     message: string
 }
-type DialogueType = {
+export type DialogueType = {
     id:number 
     name: string
 }
-
 let initialState = {
- 
         messages: [
-            
             { id: 1, message: 'LOL' },
             { id: 2, message: 'Sendor flyed awayed' },
             { id: 3, message: 'Nice vibrations!' },
@@ -34,10 +31,10 @@ let initialState = {
 }
 
 export type initialStateType = typeof initialState
+type ActionsType  = InferActionsTypes<typeof actions>
 
 
-
-const DialoguesReducer = (state = initialState, action: addMesActionCreatorType) => 
+const DialoguesReducer = (state = initialState, action: ActionsType) => 
 
 {
 
@@ -46,27 +43,16 @@ const DialoguesReducer = (state = initialState, action: addMesActionCreatorType)
        
          case ADD_MES:
             let newMes = action.newMessageBody
-            
            return  {
                 ...state,
                messages: [...state.messages,{id:6, message:newMes, }]
             }           
-         
-        
         default:
         return state;
      }
     }
-
-    type addMesActionCreatorType = {
-type: typeof ADD_MES
-newMessageBody:string
-    }
+export const actions  = {
+  addMesAction: (newMessageBody: string) => ({type:'ADD_MES', newMessageBody} as const)
+}
  
-    export const addMesActionCreator = (newMessageBody: string): addMesActionCreatorType => ({type:'ADD_MES', newMessageBody})
-      
-    
-    
-    
-    
  export default DialoguesReducer

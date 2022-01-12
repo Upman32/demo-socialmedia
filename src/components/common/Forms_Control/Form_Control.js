@@ -1,14 +1,6 @@
 import React from 'react'
 import styles from './Form_Control.module.css'
-import { Field, reduxForm } from 'redux-form'
-
-
-
-
-
-
-
-
+import { Field } from 'redux-form'
 
 export const Element = Element => ({ input, meta: {touched, error}, ...props }) => {
     const hasError = touched && error;
@@ -21,8 +13,7 @@ export const Element = Element => ({ input, meta: {touched, error}, ...props }) 
   };
   export const Frex = (placeholder, name, validate, component, props ={}, text="" ) => (
     <div>
-         <Field  placeholder={placeholder}   name={name}  validate={validate}  component={component} 
-         
+         <Field  placeholder={placeholder}   name={name}  validate={validate}  component={component}        
          {...props}/> 
          {text} 
          </div>

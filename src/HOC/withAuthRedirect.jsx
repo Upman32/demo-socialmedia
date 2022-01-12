@@ -5,9 +5,7 @@ import { Redirect } from 'react-router'
 
 
 let MapStatetoPropsforRedirect = (state) => ({
-    isAuth: state.auth.isAuth
-}
-)
+    isAuth: state.auth.isAuth})
 
 export const withAuthRedirect = (Component) => {
     class RedirectComponent extends React.Component {
