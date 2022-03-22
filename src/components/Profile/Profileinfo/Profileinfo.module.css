@@ -1,6 +1,5 @@
 .descriptionBlock {
     padding: 10px;
-    background-color: rgb(23, 177, 18);
 }
 
 .mainPhoto {
@@ -10,9 +9,4 @@
 
 .contact {
     padding-left: 10px;
-    background-color: rgb(23, 177, 18);
-}
-
-.Background {
-    background-color: rgb(23, 177, 18);
 }

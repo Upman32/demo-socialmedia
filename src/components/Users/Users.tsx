@@ -83,7 +83,7 @@ const UsersSearchform: React.FC<Propstype> = React.memo((props) => {
           <Field type="text" name="term" />
           <Field as="select" name="friend">
             <option value="null">All </option>
-            <option value="true">Only funs </option>
+            <option value="true">Only followed </option>
             <option value="false">Only unfollowed </option>
           </Field>
           <button type="submit" disabled={isSubmitting}>
