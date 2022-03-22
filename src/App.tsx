@@ -16,18 +16,16 @@ import { getauthUserData } from "./components/redux/AuthReducer";
 import store, { AppstateType } from "./components/redux/reduxs";
 import { UsersPage } from "./components/Users/UsersContainer";
 import { Login } from "./Login/Login";
-import { Layout, Menu, Breadcrumb, } from "antd";
-import {
-  UserOutlined,
-  LaptopOutlined,
-} from "@ant-design/icons";
+import { Layout, Menu, Breadcrumb } from "antd";
+import { UserOutlined, LaptopOutlined } from "@ant-design/icons";
 import { Header } from "./components/Header/Header";
 const { SubMenu } = Menu;
-const {   Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 const ProfileContainer = React.lazy(
   () => import("./components/Profile/ProfileContainer")
 );
+const ChatPage = React.lazy(() => import("./Pages/Chat/Chatpage"));
 
 type Propstype = ReturnType<typeof mapStatetoProps>;
 type Dispatchtype = {
@@ -54,7 +52,7 @@ class App extends React.Component<Propstype & Dispatchtype> {
     }
     return (
       <Layout>
-     <Header/> 
+        <Header />
         <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
             <Breadcrumb.Item>Home</Breadcrumb.Item>
@@ -75,16 +73,14 @@ class App extends React.Component<Propstype & Dispatchtype> {
                     <Link to="/dialogues">Messages</Link>
                   </Menu.Item>
                 </SubMenu>
-                <SubMenu
-                  key="sub2"
-                  icon={<LaptopOutlined />}
-                  title="Users"
-                >
-                  <Menu.Item key="5">
+                <SubMenu key="sub2" icon={<LaptopOutlined />} title="Users">
+                  <Menu.Item key="3">
                     <Link to="/Users">Users</Link>
                   </Menu.Item>
+                  <Menu.Item key="4">
+                    <Link to="/Chat">Chat</Link>
+                  </Menu.Item>
                 </SubMenu>
-
               </Menu>
             </Sider>
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
@@ -113,13 +109,17 @@ class App extends React.Component<Propstype & Dispatchtype> {
                 />
                 <Route path="/Users" render={() => <UsersPage />} />
                 <Route path="/Login" render={() => <Login />} />
+                <Route path="/Chat" render={() => 
+                      <Suspense fallback={<div>Loading</div>}>
+                      <ChatPage />
+                      </Suspense>
+                      
+                      } />
               </div>
             </Content>
           </Layout>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-        Demo social media 
-        </Footer>
+        <Footer style={{ textAlign: "center" }}>Demo social media</Footer>
       </Layout>
       /*   <div className='app-wrapper' >
         <HeaderContainer />

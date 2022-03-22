@@ -48,7 +48,7 @@ const usersReducer = (state = initialState, action: ACTs): initialStateType => {
                 ...state,
                 isFetching: action.isFetching
                     ? [...state.processing, action.userId]
-                    : state.processing.filter(id => id != action.userId) as any
+                    : state.processing.filter(id => id !== action.userId) as any
             }
         default:
             return state
@@ -86,7 +86,6 @@ const _follow_unfollow = async (
     actionCreator: (userId: number) => ACTs) => {
     dispatch(actions.toggleisProcessing(true, userId));
     let data = await apiMethod(userId)
-
     if (data.resultCode == 0) {
         dispatch(actionCreator(userId));
     }
