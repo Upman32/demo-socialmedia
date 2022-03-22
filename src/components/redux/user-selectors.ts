@@ -2,7 +2,6 @@ import { createSelector } from "reselect"
 import { AppstateType } from "./reduxs"
 
 export const getUserss = (state: AppstateType) => {
-    debugger
     return state.usersPage.users
 }
 export const superpupers = createSelector(getUserss,

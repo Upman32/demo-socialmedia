@@ -1,7 +1,15 @@
-import { Avatar } from "antd";
-import React from "react";
-
+import { message } from "antd";
+import React, { useEffect, useState } from "react";
+import avatar from '../../components/common/images/Worker.jpg'
+const wsChannel =new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
+export type ChatMessageType = {
+  message:string
+  photo:string
+  userId:number
+  userName:string
+}
 const ChatPage: React.FC = () => {
+
   return (
     <div>
        <Messages />
@@ -11,32 +19,44 @@ const ChatPage: React.FC = () => {
 };
 
 const Messages: React.FC = () => {
-  const messages=[1, 2 , 3, 4]
-  return <div>{messages.map((m:any) => <Message/>)}</div>;
+  const [messages, setMessages]= useState<ChatMessageType[]>([]) 
+  useEffect(() => {
+    wsChannel.addEventListener('message', (e: MessageEvent) => {
+      let newMessages = JSON.parse(e.data)
+      setMessages((prevMessages) => [...prevMessages, ...newMessages])
+    })
+  }, [
+
+  ])
+  return <div style={{height:'400px', overflowY:'auto'}}>{messages.map((m:any, index) => <Message key={index} message={m}/>)}</div>;
 };
-const Message: React.FC = () => {
-  const message= {
-    url:'https://via.placeholder.com/3  0',
-    author:'Dim',
-    text:'Hello friends'
-  }
-  return <div style={{height:'400px', overflowY:'auto'}}>
-    <img src={message.url}/>
-    <b>{message.author}</b>
+const Message: React.FC<{message:ChatMessageType}> = ({message}) => {
+
+  return <div >
+    <img alt={avatar} src={message.photo} style={{width: '45px'}}/>
+    <b>{message.userName}</b>
     <br/>
-    {message.text}
+    {message.message}
     <hr/>
 
   </div>;
 };
 const AddMessageForm: React.FC = () => {
+  const [message, setMessage] = useState('')
+  const sendMessage = () => {
+    if (!message) {
+      return; 
+    }
+    wsChannel.send(message)
+    setMessage('')
+  }
   return (
     <div>
       <div>
-      <textarea></textarea>
+      <textarea onChange={(e) => setMessage(e.currentTarget.value)} value={message}></textarea>
       </div>
       <div>
-      <button>Send</button>
+      <button onClick={sendMessage}>Send</button>
       </div>
     </div>
   );
