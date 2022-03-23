@@ -10,6 +10,10 @@ cd demo-socialmedia
 
 npm i 
 
+after installation node_modules you can start project!
+
+npm start
+
 ## Where you must register to use this app?
 
 You can go to https://social-network.samuraijs.com/ and click sign up 
