@@ -4,15 +4,15 @@ This project build on react/redux, there you will see Websocket chat, where you 
 follow them on users page and also edit your profile page
 ## Instruction to use this Application
 
-git clone https://github.com/Upman32/demo-socialmedia.git
+`git clone https://github.com/Upman32/demo-socialmedia.git`
 
-cd demo-socialmedia
+`cd demo-socialmedia`
 
-npm i 
+`npm i`
 
 after installation node_modules you can start project!
 
-npm start
+`npm start`
 
 ## Where you must register to use this app?
 
